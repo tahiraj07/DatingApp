@@ -9,9 +9,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace datingapp.API.Controllers
 {
+    [AllowAnonymous]    
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -47,8 +49,8 @@ namespace datingapp.API.Controllers
         {
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
-            if (userFromRepo == null)
-                return Unauthorized();
+            if (userFromRepo == null) 
+                return Unauthorized(); 
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
