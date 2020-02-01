@@ -16,6 +16,8 @@ namespace datingapp.API.Controllers
     [AllowAnonymous]    
     [Route("api/[controller]")]
     [ApiController]
+
+    [Authorize]    
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
@@ -44,6 +46,7 @@ namespace datingapp.API.Controllers
             return StatusCode(201);
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
