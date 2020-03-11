@@ -7,6 +7,7 @@ export class AlertifyService {
 
 constructor() { }
 
+//NJOFTIME PAS CDO VEPRIMI
     confirm(message: string, okCallback: () => any) {
             alertify.confirm(message, (e: any) => {
               if (e) {
