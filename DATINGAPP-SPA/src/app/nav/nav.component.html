@@ -19,7 +19,7 @@
       <button class="btn btn-outline-primary mr-2" style="border:0px" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()"> 
         Welcome {{authservice.decodedToken?.unique_name | titlecase}}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
-        <button ngbDropdownItem><i class="fa fa-user"></i>Edit Porfile</button>
+        <button ngbDropdownItem [routerLink]="['/member/edit']"><i class="fa fa-user"></i>Edit Porfile</button>
         <button ngbDropdownItem (click)="logout()" ><i class="fa fa-sign-out"></i>Log Out</button> 
       </div>
    

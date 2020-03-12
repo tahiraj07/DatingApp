@@ -34,7 +34,7 @@ export class MemberDetailComponent implements OnInit {
     ];
      this.galleryImages = this.getImages();
   }
-
+//fotot per cdo user
   getImages() {
     const imageUrls = [];
     for (const photo of this.user.photos) {
