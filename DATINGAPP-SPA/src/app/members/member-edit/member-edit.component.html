@@ -63,7 +63,8 @@
                      
                  </tab>
                  <tab heading="Edit Photos"> 
-                   <p>Fotot do te jene ketu</p>
+                   <app-photo-editor [photos]="user.photos"
+                   (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
                  </tab>
                   
                </tabset> 

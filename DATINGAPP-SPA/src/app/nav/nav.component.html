@@ -16,6 +16,7 @@
     </ul>
 
     <div *ngIf="loggedIn()" class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      
       <button class="btn btn-outline-primary mr-2" style="border:0px" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()"> 
         Welcome {{authservice.decodedToken?.unique_name | titlecase}}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
