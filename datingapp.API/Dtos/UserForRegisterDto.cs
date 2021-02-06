@@ -13,13 +13,20 @@ namespace  datingapp.API.Dtos
         [Required]
         public string Gender {get; set;}
         [Required]
-        public string KnownAs {get; set;}
+        public string Name {get; set;}
+        [Required]
+        public string Surname {get; set;}
         [Required]
         public DateTime DateOfBirth {get; set;}
         [Required]
         public string City { get; set;}
         [Required]
         public string  Country {get; set;}
+        [Required]
+        public string  Email {get; set;}
+        public string Department { get; set; }
+        public string Phone { get; set; }
+        public string Title { get; set; }
         [Required]
         public DateTime Created { get; set;}
         public DateTime LastActive { get; set;}

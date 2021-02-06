@@ -9,7 +9,7 @@ import { User } from '../_models/user';
 })
 export class AuthService {
 baseUrl = environment.apiUrl + 'auth/' ;
-jwtHelper = new JwtHelperService();
+jwtHelper = new JwtHelperService(); 
 decodedToken: any;
 currentUser: User;
 

@@ -44,7 +44,23 @@
       placeholder="Country" formControlName="country">
     <div class="invalid-feedback" *ngIf="registerForm.get('country').touched && registerForm.get('country').hasError('required')">Country is required</div>
   </div>
-
+  <div class="form-group">
+    <select [ngClass]="{'is-invalid': registerForm.get('department').errors && registerForm.get('department').touched}" class="form-control"
+    placeholder="Department" formControlName="department" class="form-control">
+      <option>Manager</option>
+      <option>User</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('title').errors && registerForm.get('title').touched}" class="form-control"
+      placeholder="Title" formControlName="title">
+    <div class="invalid-feedback" *ngIf="registerForm.get('title').touched && registerForm.get('title').hasError('required')">Title is required</div>
+  </div>
+  <div class="form-group">
+    <input [ngClass]="{'is-invalid': registerForm.get('phone').errors && registerForm.get('phone').touched}" class="form-control"
+      placeholder="Phone" formControlName="phone">
+    <div class="invalid-feedback" *ngIf="registerForm.get('phone').touched && registerForm.get('phone').hasError('required')">Title is required</div>
+  </div>
   <div class="form-group">
     <input type="password"
     [ngClass]="{'is-invalid': registerForm.get('password').errors 

@@ -33,10 +33,11 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { TodoResolver } from './_resolvers/todo.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
-
-
+import { LayoutComponent } from './layout/layout.component'; 
+import { TodoComponent } from './todo/todo.component';
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -49,8 +50,8 @@ export class   CustomHammerConfig extends HammerGestureConfig {
 }
 
 @NgModule({
-   declarations: [
-      AppComponent,
+   declarations: [	
+      AppComponent, 
       NavComponent,
       HomeComponent,
       RegisterComponent,
@@ -62,16 +63,18 @@ export class   CustomHammerConfig extends HammerGestureConfig {
       MemberEditComponent,
       PhotoEditorComponent,
       TimeAgoPipe,
-      MemberMessagesComponent
-   ],
+      MemberMessagesComponent,
+      LayoutComponent,
+      TodoComponent
+   ], 
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
-      HttpClientModule,
+      HttpClientModule, 
       FormsModule,
       ReactiveFormsModule,
       NgbModule,
-      RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(appRoutes), 
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
@@ -89,7 +92,7 @@ export class   CustomHammerConfig extends HammerGestureConfig {
       })
    ],
    providers: [ 
-      AuthService,
+      AuthService, 
       ErrorInterceptorProvider, 
       AlertifyService,
       AuthGuard,
@@ -100,6 +103,7 @@ export class   CustomHammerConfig extends HammerGestureConfig {
       PreventUnsavedChanges,
       ListsResolver,
       MessagesResolver,
+      TodoResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [

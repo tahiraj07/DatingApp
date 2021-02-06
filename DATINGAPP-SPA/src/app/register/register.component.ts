@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
-@Component({
+@Component({ 
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -35,6 +35,9 @@ export class RegisterComponent implements OnInit {
       dateOfBirth: [null, Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required], 
+      department: ['', Validators.required],
+      title: ['', Validators.required],
+      phone: ['', Validators.required],
       password: ['', [Validators.required,
         Validators.minLength(4), Validators.maxLength(8)]],
       confirmPassword: ['', Validators.required]

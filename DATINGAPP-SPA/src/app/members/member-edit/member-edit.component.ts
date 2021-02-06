@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
-@Component({
+@Component({ 
   selector: 'app-member-edit',
   templateUrl: './member-edit.component.html',
   styleUrls: ['./member-edit.component.css']
@@ -21,8 +21,8 @@ export class MemberEditComponent implements OnInit {
     if (this.editForm.dirty) {
       $event.returnValue = true;
     }
-  }
-
+  } 
+ 
 
   constructor(private route: ActivatedRoute,private alertify: AlertifyService,
     private userService: UserService, private authService: AuthService) { }

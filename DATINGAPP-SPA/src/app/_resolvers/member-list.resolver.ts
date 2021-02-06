@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class MemberListResolver implements Resolve<User[]> {
+export class MemberListResolver implements Resolve<User[]> { 
     pageNumber = 1;
     pageSize = 5;
 

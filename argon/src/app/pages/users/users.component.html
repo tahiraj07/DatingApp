@@ -1,0 +1,131 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+         
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center mt-3">
+  <h2>Your matches - {{pagination.totalItems}} found</h2>
+</div>
+
+<div class="container mt-3">
+
+  <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+    <div class="form-group">
+      <label for="minAge">Age From</label>
+      <input type="number" class="form-control ml-1" style="width: 70px" id="minAge"
+      [(ngModel)]="userParams.minAge" name="minAge">
+    </div>
+  
+    <div class="form-group px-2">
+      <label for="maxAge">Age To</label>
+      <input type="number" class="form-control ml-1" style="width: 70px" id="maxAge"
+      [(ngModel)]="userParams.maxAge" name="maxAge">
+    </div>
+  
+    <div class="form-group px-2">
+      <label for="gender">Show: </label>
+      <select class="form-control ml-1" style="width: 130px" id="gender"
+      [(ngModel)]="userParams.gender" name="gender">
+        <option *ngFor="let gender of genderList" [value]="gender.value">
+          {{gender.display}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
+    <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Reset Filter</button>
+  
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" name="orderBy" class="btn btn-primary"
+        [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Last Active</button>
+        <button type="button" name="orderBy" class="btn btn-primary"
+        [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="created">Newest Members</button>
+      </div>
+    </div> 
+
+
+  </form>
+  <br>
+  <br>
+  <br>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+   
+  <!-- Dark table -->
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Card tables</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">User</th>
+                <th scope="col">Department</th>
+                <th scope="col">Title</th>
+                <th scope="col">Country</th>
+                <th scope="col">City</th>
+                <th scope="col">Phone</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                      <img src="{{user.photoUrl  || '../../../../../assets/img/user.png'}}">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{user.name}} {{user.surname}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{user.department}}
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> {{user.title}}
+                  </span>
+                </td>
+                <td>
+                  {{user.country}}
+                </td>
+                <td>
+                  {{user.city}}
+                </td>
+                <td>
+                  {{user.phone}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+               
+               
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
