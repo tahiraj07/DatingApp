@@ -14,7 +14,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot() 
     // NgbModule
   ],
   declarations: [

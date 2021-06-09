@@ -7,8 +7,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
+import { IconsComponent } from '../../pages/icons/icons.component'; 
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,34 +20,50 @@ import { MemberListResolver } from 'src/app/_resolver/member-list.resolver';
 import { UsersComponent } from 'src/app/pages/users/users.component'; 
 import { MemberCardComponent } from 'src/app/pages/member-card/member-card.component';
 import { TasksComponent } from 'src/app/pages/tasks/tasks.component';
-import { TabsModule } from 'ngx-bootstrap/tabs'; 
+import { TabsModule } from 'ngx-bootstrap/tabs';  
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ChatComponent } from 'src/app/pages/chat/chat.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MessagesResolver } from 'src/app/_resolver/messages.resolver';
+import { TaskDetailComponent } from 'src/app/pages/task-detail/task-detail.component';
+import { TaskDetailResolver } from 'src/app/_resolver/task-detail.resolver';
 // import { ToastrModule } from 'ngx-toastr';  
 @NgModule({
   imports: [
     CommonModule,
-    TabsModule.forRoot(),
+    TabsModule.forRoot(), 
+    FormsModule,
+    ReactiveFormsModule,
+    PaginationModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule 
+    ClipboardModule,
+    PerfectScrollbarModule
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     TablesComponent, 
-    IconsComponent,
-    MapsComponent,
+    IconsComponent, 
     UsersComponent,
     MemberCardComponent,
-    TasksComponent
+    TasksComponent,
+    ChatComponent,
+    TaskDetailComponent
   ],
   providers: [AuthService,  
     AlertifyService,
   UserService,
   AuthGuard,
   MemberListResolver,
-  UserProfileResolver ]
+  MessagesResolver,
+  UserProfileResolver,
+  TaskDetailResolver ]
 })
 
 export class AdminLayoutModule {}

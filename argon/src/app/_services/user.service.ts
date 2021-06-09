@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 import { PaginateResult } from '../_models/pagination';
 import { Message } from '../_models/message';
+import { Task } from '../_models/task'; 
+import { Comments } from '../_models/comment';
 
 const httpOptions = {
   headers: new HttpHeaders ({
@@ -21,6 +23,10 @@ export class UserService {
   baseUrl = environment.apiUrl;
 
 constructor(private http: HttpClient) { }
+formData: Task = new Task();
+commData: Comments = new Comments();
+com: Comments[];
+list: Task[];
 //MERR TBL E USERAVE NGA DATABASA API
  
   getUsers(page?, itemsPerPage?,userParams?, likesParam?): Observable<PaginateResult<User[]>> {
@@ -112,7 +118,7 @@ constructor(private http: HttpClient) { }
   sendMessage(id: number, message: Message) {
     return this.http.post(this.baseUrl + 'user/' + id + '/messages', message);
   }
-
+   
   deleteMessage(id: number, userId: number) {
     return this.http.post(this.baseUrl + 'user/' + userId + '/messages/' + id, {});
   }
@@ -121,4 +127,26 @@ constructor(private http: HttpClient) { }
     this.http.post(this.baseUrl + 'user/' + userId + '/messages/' + messageId + '/read', {})
     .subscribe();
   }
-}
+
+  addtask(id: number, task: Task) {
+    return this.http.post(this.baseUrl + 'user/' + id + '/tasks', this.formData); 
+  }
+  deletePaymentDetail(id: number, userId: number) {
+    return this.http.delete(this.baseUrl + 'user/' + userId + '/tasks/' + id, {});
+  }
+  getTask(id: number) {
+    this.http.get(this.baseUrl + 'user/' + id + '/tasks' )
+      .toPromise()
+      .then(res =>this.list = res as Task[]); 
+      
+  }
+  getTaskk(id: number, userId: number): Observable<Task> {
+    return this.http.get<Task>(this.baseUrl + 'user/' + id + '/tasks/' + userId, {});
+  }
+  updateTask (id: number, userId: number) {
+    return this.http.put(this.baseUrl + 'user/' + id + '/tasks/' + userId, this.formData)
+  }
+  addcomment(id: number, comm: Comment) {
+    return this.http.post(this.baseUrl + 'user/' + id + '/tasks/CreateComment' , comm); 
+  }
+} 

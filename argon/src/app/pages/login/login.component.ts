@@ -8,8 +8,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit  { 
-  public collapsed = false;
+export class LoginComponent implements OnInit  {  
   model: any = {};
   constructor(public authservice: AuthService, private alertify: AlertifyService,
     private router: Router ) { }

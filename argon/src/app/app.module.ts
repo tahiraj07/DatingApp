@@ -13,13 +13,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ComponentsModule } from './components/components.module';
   
-import { UserProfileResolver } from 'src/app/_resolver/userprofile.resolver'; 
+import { 
+  PerfectScrollbarModule, 
+  PERFECT_SCROLLBAR_CONFIG, 
+  PerfectScrollbarConfigInterface
+} from 'ngx-perfect-scrollbar';
 import { routes } from './app.routing'; 
 import { AuthService } from './_services/auth.service';
 import { AlertifyService } from './_services/alertify.service';
 import { UserService } from './_services/user.service';
 import { AuthGuard } from './_guards/auth.guard';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';  
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -33,8 +38,9 @@ export function tokenGetter() {
     ComponentsModule, 
     NgbModule,
     RouterModule, 
+    PerfectScrollbarModule,
     TabsModule.forRoot(),
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(), 
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
     RouterModule.forRoot(routes),

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';  
-import { User } from '../_models/user';
+import { User } from '../_models/user'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +34,7 @@ login(model: any) {
 register(user: User) {
   return this.http.post(this.baseUrl + 'register', user); 
 }
+ 
 
 loggedIn() {
     const token = localStorage.getItem('token');

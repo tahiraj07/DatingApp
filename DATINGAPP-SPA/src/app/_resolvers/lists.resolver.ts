@@ -22,7 +22,7 @@ export class ListsResolver implements Resolve<User[]> {
                     this.router.navigate(['/home']);
                     return of(null);
                 })
-            );
+            ); 
         }
         
 }

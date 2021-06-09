@@ -31,6 +31,15 @@ export class UserProfileComponent implements OnInit {
     this.user = data['user'];
     
   });
+  
+  }
+  updateUser() {
+    this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
+      this.alertify.success('Profile updated successfully');
+      this.editForm.reset(this.user);
+    },error => {
+      this.alertify.error(error);
+    })
   }
   // updateUser() {
   //   this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {

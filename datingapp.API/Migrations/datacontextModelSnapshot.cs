@@ -19,6 +19,37 @@ namespace datingapp.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("datingapp.API.Models.Comments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CommentSent")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("tasksIdId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("tasksIdId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("datingapp.API.Models.Like", b =>
                 {
                     b.Property<int>("LikerId")
@@ -106,6 +137,56 @@ namespace datingapp.API.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("datingapp.API.Models.Tasks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Assigned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueTo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notify")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaskDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaskName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToDo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserWhoCreate")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.ToTable("Tasks");
+                });
+
             modelBuilder.Entity("datingapp.API.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -181,6 +262,19 @@ namespace datingapp.API.Migrations
                     b.ToTable("Values");
                 });
 
+            modelBuilder.Entity("datingapp.API.Models.Comments", b =>
+                {
+                    b.HasOne("datingapp.API.Models.User", "Commenter")
+                        .WithMany("UserComment")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("datingapp.API.Models.Tasks", "tasksId")
+                        .WithMany("TasksId")
+                        .HasForeignKey("tasksIdId");
+                });
+
             modelBuilder.Entity("datingapp.API.Models.Like", b =>
                 {
                     b.HasOne("datingapp.API.Models.User", "Likee")
@@ -218,6 +312,14 @@ namespace datingapp.API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("datingapp.API.Models.Tasks", b =>
+                {
+                    b.HasOne("datingapp.API.Models.User", "CreatedBy")
+                        .WithMany("TaskCreated")
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

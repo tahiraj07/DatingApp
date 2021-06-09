@@ -1,4 +1,4 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-danger pb-5 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
@@ -7,63 +7,42 @@
       </div>
     </div>
   </div>
-</div>
-<div class="text-center mt-3">
-  <h2>Your matches - {{pagination.totalItems}} found</h2>
-</div>
-
-<div class="container mt-3">
-
-  <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
-    <div class="form-group">
-      <label for="minAge">Age From</label>
-      <input type="number" class="form-control ml-1" style="width: 70px" id="minAge"
-      [(ngModel)]="userParams.minAge" name="minAge">
-    </div>
-  
-    <div class="form-group px-2">
-      <label for="maxAge">Age To</label>
-      <input type="number" class="form-control ml-1" style="width: 70px" id="maxAge"
-      [(ngModel)]="userParams.maxAge" name="maxAge">
-    </div>
-  
-    <div class="form-group px-2">
-      <label for="gender">Show: </label>
-      <select class="form-control ml-1" style="width: 130px" id="gender"
-      [(ngModel)]="userParams.gender" name="gender">
-        <option *ngFor="let gender of genderList" [value]="gender.value">
-          {{gender.display}}
-        </option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
-    <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Reset Filter</button>
-  
-    <div class="col">
-      <div class="btn-group float-right">
-        <button type="button" name="orderBy" class="btn btn-primary"
-        [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Last Active</button>
-        <button type="button" name="orderBy" class="btn btn-primary"
-        [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="created">Newest Members</button>
-      </div>
-    </div> 
+</div> 
+ 
 
 
-  </form>
-  <br>
-  <br>
-  <br>
 <!-- Page content -->
 <div class="container-fluid mt--7">
+  <div class="container mt-3">
+    <!-- Search-->
+    <div class="wrap">
+      <div class="search">
+          <input type="text" class="searchtext" placeholder="Search...">
+          <button type="submit" class="btn search-button">
+            <i class="fa fa-search"></i>
+          </button>
+          <button class="btn btn-raised btn-danger btn-left" type="button"> 
+            <span class="d-lg-block d-none">Add User<li class="ni ni-fat-add"></li></span> 
+          </button>
+      </div>  
+    </div> 
+    <br> 
+    <!-- Filters -->
+    <div class="wrap" style="border-top:1px solid #19469D;" >
+      <br>
+      <div class="users">
+        <h2>All Users</h2> 
+        <button class="btn btn-raised btn-danger btn-exp" type="button"> 
+          <span class="d-lg-block d-none">Add User<li class="ni ni-fat-add"></li></span> 
+        </button> 
+      </div>  
+    </div> 
   <!-- Table -->
    
   <!-- Dark table -->
   <div class="row mt-5">
     <div class="col">
-      <div class="card bg-default shadow">
-        <div class="card-header bg-transparent border-0">
-          <h3 class="text-white mb-0">Card tables</h3>
-        </div>
+      <div class="card bg-default shadow"> 
         <div class="table-responsive">
           <table class="table align-items-center table-dark table-flush">
             <thead class="thead-dark">
@@ -127,5 +106,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

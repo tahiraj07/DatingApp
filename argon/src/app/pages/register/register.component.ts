@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(g: FormGroup) {
     return g.get('password').value === g.get('confirmPassword').value ? null : {'mismatch': true};
   }
-
+ 
   register(){
     if (this.registerForm.valid) {
       this.user = Object.assign({}, this.registerForm.value);

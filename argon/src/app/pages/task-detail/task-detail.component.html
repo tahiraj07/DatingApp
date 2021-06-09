@@ -1,0 +1,121 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+               
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between"> 
+            <button class="btn btn-raised btn-outline-secondary" (click)="enableDisableRule()" value="Completed" 
+            [ngClass]="{'green' : toggle, 'red': !toggle}" type="text"> 
+              <span class="d-lg-block d-none" style="color: black;">Mark Done</span>
+            </button>
+            <button class="btn btn-raised bg-gradient-danger float-right" type="text"> 
+              <span class="d-lg-block d-none">Delete</span>
+            </button>
+          </div>
+        </div>
+         <!--Radio buttons Starts-->
+         <div class="col-md-12">
+          <div class="card">
+              <div class="card-header">
+                  <h4 class="card-title">Task Status</h4>
+              </div>
+              <div class="card-content">
+                  <div class="card-body">
+                      <div style="display: block;" class="btn-group-vertical btn-group-toggle" ngbRadioGroup name="radioBasic" 
+                      name="status" #status="ngModel" [(ngModel)]="userService.formData.status" (ngModelChange)="updateTask()" >
+
+                          <label   ngbButtonLabel class="btn-raised btn-primary">
+                              <input ngbButton type="radio" value="ToDo">To Do
+                          </label>
+                          <label  ngbButtonLabel class="btn-raised btn-primary">
+                              <input ngbButton type="radio" value="Completed"> Completed
+                          </label>
+                          <label  ngbButtonLabel class="btn-raised btn-primary">
+                              <input ngbButton type="radio" value="InProgress"> In Progress
+                          </label>
+                          <label  ngbButtonLabel class="btn-raised btn-primary">
+                            <input ngbButton type="radio" value="OnHold"> On Hold
+                        </label>
+                      </div>
+                      <hr> 
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--Radio buttons Ends-->
+
+      </div>
+    </div>
+     <!-- Description lists horizontal -->
+     <div class="col-md-12 col-lg-8">
+      <div class="card">
+        <div class="card-header text-left">
+          <h4 class="card-title">{{task.taskDetail}}</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="card-text text-left">
+              <dl class="row">
+                <dt class="col-sm-3">Assigned to:</dt>
+                <dd class="col-sm-9">{{task.assigned}}</dd>
+              </dl>
+              <dl class="row">
+                <dt class="col-sm-3">When done notify:</dt>
+                <dd class="col-sm-9">{{task.notify}}</dd>
+              </dl>
+              <dl class="row">
+                <dt class="col-sm-3">Due on</dt>
+                <dd class="col-sm-9">{{task.dueTo | date: 'shortDate'}}</dd>
+              </dl>  
+              <dl class="row">
+                <dt class="col-sm-3 text-truncate">To do :</dt>
+                <dd class="col-sm-9">{{task.toDo}}</dd>
+              </dl> 
+              <dl class="row">
+                <dt class="col-sm-3 text-truncate">Notes</dt>
+                <dd class="col-sm-9">{{task.notes}}</dd>
+              </dl> 
+              <dl class="row">
+                <fieldset class="form-group position-relative has-icon-left col-lg-10 col-8 m-0 px-3">
+                  <div class="form-control-position">
+                    <i class="icon-emoticon-smile"></i>
+                  </div>
+                  <input type="text" class="form-control" id="iconLeft4" placeholder="Comment"  
+                  name="content"  #content="ngModel" [(ngModel)]="userService.commData.content"
+                  #messageInput>
+                  <div class="form-control-position control-position-right">
+                    <i class="ft-image mr-1"></i>
+                  </div>
+                </fieldset>
+                <fieldset class="form-group position-relative has-icon-left col-lg-2 col-4 m-0">
+                  <button type="button" class="btn btn-raised btn-primary px-4"  >
+                    <i class="fa fa-paper-plane-o d-block d-xl-inline-block d-lg-none p-0"></i>
+                    <span class="d-none d-lg-inline-block ml-1" (click)="addComment()">Send</span>
+                  </button>
+                </fieldset>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Description lists horizontal-->
+   
+  </div>
+</div>

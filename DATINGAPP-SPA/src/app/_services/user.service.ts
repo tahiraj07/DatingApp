@@ -77,7 +77,7 @@ constructor(private http: HttpClient) { }
   getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
     const paginatedResult: PaginateResult<Message[]> = new PaginateResult<Message[]>();
 
-    let params = new HttpParams();
+    let params = new HttpParams(); 
 
     params = params.append('MessageContainer', messageContainer);
 

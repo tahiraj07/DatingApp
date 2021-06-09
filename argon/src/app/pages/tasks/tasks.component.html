@@ -3,126 +3,181 @@
     <div class="header-body">
       <!-- Card stats -->
       <div class="row">
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                  <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="fas fa-chart-pie"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                  <span class="h2 font-weight-bold mb-0">924</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                    <i class="fas fa-users"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                  <span class="h2 font-weight-bold mb-0">49,65%</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <i class="fas fa-percent"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="container-fluid mt--7"> 
+  <button class="btn btn-raised btn-danger" type="button" (click)="open(content)"> 
+    <span class="d-lg-block d-none">Create Task</span>
+  </button>
+   
    <!-- Table -->
    <div class="row">
     <div class="col">
       <div class="card shadow"> 
       
   <h1 class="test"> </h1>
+
+  <!-- Tabet -->
     
   <ngb-tabset   [destroyOnHide]="false">
     
     <ngb-tab title="My assignments">
-      <ng-template ngbTabContent>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <ng-template ngbTabContent> 
+      <div class="row">
+           
+          <div class="col-md-6">
+              <table class="table">
+                  <thead class="thead-light">
+                      <tr>
+                          <th>Task Name</th> 
+                          <th>Status</th> 
+                          <th>Due To</th> 
+                          <th></th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let pd of userService.list">
+                          <td routerLinkActive="active" [routerLink]="['/task-detail/', pd.id]" style="width:80%;" (click)="populateForm(pd)">{{pd.taskName}}</td> 
+                          <td (click)="populateForm(pd)">{{pd.status}}</td> 
+                          <td (click)="populateForm(pd)">{{pd.dueTo | date: 'shortDate'}}</td> 
+                          <td>
+                              <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
+                          </td>
+                          <td>
+                            <i class="fas fa-pencil-alt  fa-lg text-success"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      
       </ng-template>
     </ngb-tab>
      
     <ngb-tab>
       <ng-template ngbTabTitle>My assignments with dates</ng-template>
       <ng-template ngbTabContent>
-          <p>This is SMS Setting</p>
+        <!-- <div class="row mt-2"> 
+          <div style="padding-right: 20px;" class="col-6 text-right">
+            <button type="button" class="btn btn-raised btn-danger" (click)="addTask()">
+              <i class="fa fa-paper-plane-o d-lg-none d-block"></i>
+              <span class="d-lg-block d-none">Create</span>
+            </button>
+          </div>
+        </div> -->
+        <!-- Taskboard Starts -->
+        <section style="padding: 20px;" id="taskboard">
+        
+        
+          <div class="row">
+            <div class="col-md-3 col-12">
+              <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ni ni-bullet-list-67 mr-1 float-left"></i> To Dos</h4>
+              <div class='dragdrop-container'  id="New" >
+                <div *ngFor='let todo of userService.list' [attr.task-id]="todo.id">
+                  <div *ngIf="todo.status == 'ToDo'" class="card">
+                    <div  class="card-body pt-3 text-left">
+                      <div class="clearfix">
+                        <h5 class="text-bold-500 primary float-left">{{todo.taskName}}</h5>
+                        <div class="actions float-right">
+                          <i class="ni ni-ruler-pencil mr-1 info" (click)="editTask(todo.id);"></i>
+                          <i class="far fa-trash-alt fa-lg text-danger"   (click)="onDelete(todo.id);"></i>
+                        </div>
+                      </div>
+                      <p>{{todo.taskDetail}}</p>
+                      <img src="{{'../../../../../assets/img/avatar-s-1.png'}}" style="width: 20%;" class="rounded-circle width-50 mr-2"> <span class="primary">{{todo.createdDate | date: 'EEEE, MMM d'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-12">
+              <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ni ni-button-play mr-1  float-left"></i> In Progress</h4>
+              <div class='dragdrop-container'   id="In-Process" >
+                <div *ngFor='let inProcess of userService.list' [attr.task-id]="inProcess.id">
+                  <div *ngIf="inProcess.status == 'InProgress'" class="card">
+                    <div class="card-body pt-3 text-left">
+                      <div class="clearfix">
+                        <h5 class="text-bold-500 info float-left">{{inProcess.taskName}}</h5>
+                        <div class="actions float-right">
+                          <i class="ni ni-ruler-pencil mr-1 info"  (click)="editTask(inProcess.id);" ></i>
+                          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(inProcess.id);"></i>
+                        </div>
+                      </div>
+                      <p>{{inProcess.taskDetail}}</p>
+                      <img src="{{'../../../../../assets/img/avatar-s-1.png'}}" style="width: 20%;" class="rounded-circle width-50 mr-2"> <span class="info">{{inProcess.createdDate | date: 'EEEE, MMM d'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="col-md-3 col-12">
+              <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ni ni-check-bold mr-1  float-left"></i>Completed</h4>
+              <div class='dragdrop-container'  id="Completed"  >
+                <div *ngFor='let completed of  userService.list' [attr.task-id]="completed.id">
+                  <div *ngIf="completed.status == 'Completed'"  class="card">
+                    <div class="card-body pt-3 text-left">
+                      <div class="clearfix">
+                        <h5 class="text-bold-500 success float-left">{{completed.taskName}}</h5>
+                        <div class="actions float-right">
+                          <i class="ni ni-ruler-pencil mr-1 info" (click)="editTask(completed.id);" ></i>
+                          <i class="far fa-trash-alt fa-lg text-danger"    (click)="onDelete(completed.id);"></i>
+                        </div>
+                      </div>
+                      <p>{{completed.taskDetail}}</p>
+                      <img src="{{'../../../../../assets/img/avatar-s-1.png'}}" style="width: 20%;" class="rounded-circle width-50 mr-2"> <span class="success">{{completed.createdDate | date: 'EEEE, MMM d'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="col-md-3 col-12">
+              <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ni ni-button-pause mr-1  float-left"></i>On Hold</h4>
+              <div class='dragdrop-container'   id="Pending"  >
+                <div *ngFor='let backLog of  userService.list' [attr.task-id]="backLog.id">
+                  <div *ngIf="backLog.status == 'OnHold'" class="card">
+                    <div class="card-body pt-3 text-left">
+                      <div class="clearfix">
+                        <h5 class="text-bold-500 warning float-left">{{backLog.taskName}}</h5>
+                        <div class="actions float-right">
+                          <i class="ni ni-ruler-pencil mr-1 info" (click)="editTask(backLog.id);" ></i>
+                          <i class="far fa-trash-alt fa-lg text-danger"   (click)="onDelete(backLog.id);"></i>
+                        </div>
+                      </div>
+                      <p>{{backLog.taskDetail}}</p>
+                      <img src="{{'../../../../../assets/img/avatar-s-1.png'}}" style="width: 20%;" class="rounded-circle width-50 mr-2"> <span class="warning">{{backLog.createdDate | date: 'EEEE, MMM d'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+        </section>
+        <!-- Taskboard Ends -->
+        
       </ng-template>
     </ngb-tab>
      
     <ngb-tab>
       <ng-template ngbTabTitle>Stuff I’ve assigned</ng-template>
       <ng-template ngbTabContent>
-          <p>This is Email Setting</p>
+        <div class="card-content">
+          <div class="card-body">
+            <ul class="list-group">
+              <li *ngFor='let backLog of  userService.list' class="list-group-item">
+                <span class="badge badge-success mr-2">{{backLog.notify}}</span>{{backLog.taskName}}
+              </li> 
+            </ul>
+          </div>
+        </div>
       </ng-template>
     </ngb-tab> 
      
@@ -131,3 +186,118 @@
 </div>
 </div>
 </div>
+<!-- Modal - Krijimi i nje tasku te ri -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Creating new Task</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form  #taskForm="ngForm" (submit)="addTask()">
+      <div class="form-group">
+        <label for="taskDetail">Task Detail</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Task Detail" name="taskDetail"
+            #taskDetail="ngModel" [(ngModel)]="userService.formData.taskDetail"
+            required [class.invalid]="taskDetail.invalid && taskDetail.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="taskName">Task Name</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Task Name" name="taskName"
+            #taskName="ngModel" [(ngModel)]="userService.formData.taskName"
+            required [class.invalid]="taskName.invalid && taskName.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="assigned">Assigned To</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Assigned To" name="assigned"
+            #assigned="ngModel" [(ngModel)]="userService.formData.assigned"
+            required [class.invalid]="assigned.invalid && assigned.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <div class="input-group"> 
+          <select class="form-control form-control-lg" placeholder="Status" name="status"
+          #status="ngModel" [(ngModel)]="userService.formData.status"
+          required [class.invalid]="status.invalid && status.touched"> 
+            <option>ToDo</option>
+            <option>InProgress</option>
+            <option>Completed</option>
+            <option>OnHold</option> 
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="notify">Notify</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Notify" name="notify"
+          #notify="ngModel" [(ngModel)]="userService.formData.notify"
+          required [class.invalid]="notify.invalid && notify.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="toDo">To Do</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="To Do" name="toDo"
+          #toDo="ngModel" [(ngModel)]="userService.formData.toDo"
+          required [class.invalid]="toDo.invalid && toDo.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="notes">Notes</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Notes" name="notes"
+          #notes="ngModel" [(ngModel)]="userService.formData.notes"
+          required [class.invalid]="notes.invalid && notes.touched"> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <div class="input-group">
+          <input class="form-control form-control-lg" placeholder="Comment" name="comment"
+          #comment="ngModel" [(ngModel)]="userService.formData.comment"
+          required [class.invalid]="comment.invalid && comment.touched"> 
+        </div>
+      </div> 
+      <div class="form-group">
+        <label for="dueTo">Due To</label>
+        <div class="input-group">
+          <input   name="dp"  [(ngModel)]="userService.formData.dueTo" class="form-control"
+             bsDatepicker [bsConfig]="bsConfig" >
+           
+        </div>
+        <!-- <div class="input-group">
+          <input id="dueTo" class="form-control" placeholder="yyyy-mm-dd" format='yyyy-MM-dd hh:mm:ss' name="dp" ngbDatepicker #dp="ngbDatepicker"
+          #dueTo="ngModel" [(ngModel)]="userService.formData.dueTo"> 
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="createdDate">Created</label>
+        <div class="input-group">
+          <input id="createdDate" class="form-control" placeholder="yyyy-mm-dd" name="dC" ngbDatepicker #dC="ngbDatepicker"
+          #createdDate="ngModel" [(ngModel)]="userService.formData.createdDate"> 
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dC.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+       
+      <div class="text-center">
+        <button type="submit" class="btn btn-raised btn-danger" >
+          <i class="fa fa-paper-plane-o d-lg-none d-block"></i>
+          <span class="d-lg-block d-none">Create Task</span>
+        </button> 
+      </div>
+    </form> 
+  </div> 
+</ng-template>
+ 
